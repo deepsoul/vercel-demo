@@ -1,5 +1,5 @@
 {
-  "name": "vue",
+  "name": "vue-nf-doodle",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,6 +10,9 @@
   },
   "dependencies": {
     "core-js": "^2.6.5",
+    "firebase": "^8.0.2",
+    "node-sass": "^5.0.0",
+    "sass-loader": "^10.1.0",
     "vue": "^2.6.10"
   },
   "devDependencies": {
