@@ -2,6 +2,10 @@
 <template>
   <div>
     <h1 class="headline">Cookies Doodle</h1>
+    <div class="qr-codes">
+        <QR :name="'boris'" />
+        <QR :name="'jacky'" />
+    </div>
     <div class="counter">
         <Counter v-if="bCount > 0" :count="bCount" :name="'Boris'" />
         <Counter v-if="jCount > 0" :count="jCount" :name="'Jacky'" />
@@ -16,10 +20,12 @@
 </template>
 
 <script>
+import QR from './atoms/QR';
 import Counter from './atoms/Counter';
 export default {
     components : {
-        Counter
+        Counter,
+        QR
     },
   data() {
     return {
@@ -50,6 +56,10 @@ export default {
       }
   },
   created() {
+    let uri = window.location.search.substring(1); 
+    let params = new URLSearchParams(uri);
+    this.onAddDoodle(params.get("enc"));
+    
   const db = this.$firebase.firestore();
             db
             .collection('cookies')
@@ -69,6 +79,7 @@ export default {
         },
 
   mounted() {
+   
     const db = this.$firebase.firestore();
     db
       .collection('cookies')
@@ -105,6 +116,12 @@ h1.headline {
    .card {
        margin:1em;
    }
+}
+
+.qr-codes {
+    .qr {
+        margin:1em;
+    }
 }
 
 .button {
